@@ -57,7 +57,7 @@ class XYZRecordController extends \BaseController {
 		$response = array(
 			'id' 		  => 'Success',
 			'description' => 'The XYZRecordValidator was successfully added.',
-			'data' 		  => $protocol->toArray(),
+			'data' 		  => $xyz->toArray(),
 			'status' 	  => 200
 		);
 
