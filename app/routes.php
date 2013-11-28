@@ -11,3 +11,7 @@
 |
 */
 
+/*************************************/
+/* 	 REGISTER RESOURCE CONTROLLERS   */
+/*************************************/
+Route::resource('api/v1/xyzrecord', 'XYZRecordController');
