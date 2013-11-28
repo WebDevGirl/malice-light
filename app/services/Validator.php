@@ -1,0 +1,75 @@
+<?php
+
+namespace App\Services\Validators;
+
+abstract class Validator {
+
+	/**
+	 * Container for the data that needs to be validated
+	 * @var array
+	 */
+	protected $data;
+
+	/**
+	 * Validation errors
+	 * @var array
+	 */
+	public $errors;
+
+	/**
+	 * Validation rules
+	 * @var array
+	 */
+	public static $rules;
+
+	/**
+	 * Initialize validator
+	 * @param array $data
+	 */
+	public function __construct($data = null) {
+
+		$this->data = $data ?: \Input::all();
+	}
+
+	/**
+	 * Check if validation passes
+	 * @return bool
+	 */
+	public function passes() {
+
+		$validation = \Validator::make($this->data, static::$rules);
+
+		if ($validation->passes()) {
+
+			return true;
+		}
+
+		$this->errors = $validation->messages();
+
+		return false;
+	}
+
+	public function fails() {
+
+		$validation = \Validator::make($this->data, static::$rules);
+
+		if ($validation->fails()) {
+
+			$this->errors = $validation->messages();
+			
+			return true;
+		}
+		
+		return false;
+	}
+
+	/*
+	EXAMPLE OF USE (IE: in ClassesController):
+		$validation = new ClassesValidator;
+		$validation->applyRules(ClassesValidator::$update_rules);
+	*/
+	public function applyRules($newRules = null) {
+		
+		static::$rules = $newRules;
+	}
+}
