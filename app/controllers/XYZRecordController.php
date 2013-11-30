@@ -48,6 +48,8 @@ class XYZRecordController extends \BaseController {
 
 		/* Prepare to insert with valid data */
 		$xyz = new XYZRecord;
+		
+		error_log(print_r(Input::all(),true));
 
 		/* Only fill course object with keys from rules array */
 		$xyz->fill(Input::only(array_keys(XYZRecordValidator::$rules)));
@@ -57,7 +59,7 @@ class XYZRecordController extends \BaseController {
 		$response = array(
 			'id' 		  => 'Success',
 			'description' => 'The XYZRecordValidator was successfully added.',
-			'data' 		  => $xyz->toArray(),
+			#'data' 		  => $xyz->toArray(),
 			'status' 	  => 200
 		);
 
