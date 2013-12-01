@@ -2,7 +2,6 @@
 /vendor/*
 !/vendor/tiesa
 composer.phar
-composer.lock
 .DS_Store
 /app/config/*mail.php
 /app/config/*database.php
