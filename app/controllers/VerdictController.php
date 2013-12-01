@@ -21,8 +21,8 @@ class VerdictController extends \BaseController {
 	 */
 	public function show($id)
 	{	
-		$accel_records = XYZRecord::where("session_id", "123")->where("sensor_id","1")->get();
-		$light_records = XYZRecord::where("session_id", "123")->where("sensor_id","2")->get();
+		$accel_records = XYZRecord::where("session_id", $id)->where("sensor_id","1")->get();
+		$light_records = XYZRecord::where("session_id", $id)->where("sensor_id","2")->get();
 		
 		$dataArray[] = array(
 			'sensor_id' => 1,
