@@ -32,7 +32,7 @@ class VerdictController extends \BaseController {
 		$init_time = $accel_records[0]['record_float'];
 
 
-		/* Get points for x vector */
+		/* Get points for x vector for LIGHT sensor */
 		$x_points = "";
 		foreach($light_records as $rec) {
 			$x_points .= ($rec['record_float'] - $init_time) . ", "; 
@@ -40,9 +40,9 @@ class VerdictController extends \BaseController {
 		$x_points = substr($x_points,0,strlen($x_points)-2); // remove tailing ,
 
 		
-		/* Get points for y vector */
+		/* Get points for y vector for LIGHT sensor */
 		$y_points = "";
-		foreach($accel_records as $rec) {
+		foreach($light_records as $rec) {
 			$y_points .= ($rec['record_float'] - $init_time) . ", "; 
 		}
 		$y_points = substr($y_points,0,strlen($y_points)-2); // remove tailing ,
