@@ -49,12 +49,10 @@ class VerdictController extends \BaseController {
 
 
 		/* Build Octave Script - Graph */
-		$octave_script = "
-		\nx=[${x_points}];
-		\ny=[${y_points}];
-
-		\nplot(x,y);
-  		\nprint -dpng ".public_path()."/images/file.png;";
+		$octave_script  = "x=[${x_points}];\n";
+		$octave_script .= "y=[${y_points}];\n";
+		$octave_script .= "plot(x,y);\n";
+		$octave_script .= "print -dpng ".public_path()."/images/file.png;";
 
 		/* Set Script Filename */
 		$octave_script_path = storage_path()."/cache/file.m";
