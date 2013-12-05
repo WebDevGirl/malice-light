@@ -27,7 +27,11 @@ class VerdictController extends \BaseController {
 		/* Get Data To Analyze */
 		$accel_records = XYZRecord::where("session_id", $id)->where("sensor_id","1")->get();
 		$light_records = XYZRecord::where("session_id", $id)->where("sensor_id","2")->get();
-		
+
+
+		/*****************************************
+		*	LIGHT SENSOR ANALYSIS
+		*****************************************/
 		/* Set Time at first point */
 		$init_time = $accel_records[0]['record_float'];
 
@@ -64,6 +68,47 @@ class VerdictController extends \BaseController {
 		/* System Call - Forgive this transgression */
 		system(' octave --silent --eval "source(\''.$octave_script_path.'\');"');
 
+		
+		/*****************************************
+		*	ACELLEROMTER DATA ANALYSIS
+		*****************************************/
+		/* Get points for x vector for LIGHT sensor */
+		$x_points = "";
+		foreach($light_records as $rec) {
+			$x_points .= ($rec['record_float'] - $init_time) . ", "; 
+		}
+		$x_points = substr($x_points,0,strlen($x_points)-2); // remove tailing ,
+
+		
+		/* Get points for y vector for LIGHT sensor */
+		$x_y_points = "";
+		foreach($light_records as $rec) {
+			$x_y_points .= $rec['x'] . ", "; 
+		}
+		$x_y_points = substr($x_y_points,0,strlen($x_y_points)-2); // remove tailing ,
+
+		/* Get Existing Octave Script */
+		 $octave_partition_points_path = storage_path()."/octave/partition_points.m";
+		 $octave_partition_points = File::get($octave_partition_points_path);
+
+		 echo "<pre>";
+		 
+
+
+		/* Build Octave Script - Graph */
+		$octave_script  = "x=[${x_points}];\n";
+		$octave_script .= "y=[${x_y_points}];\n";
+		$octave_script .= $octave_partition_points . "\n";
+		$octave_script .= "partition_points(x,y, '".public_path()."/images/file2.png;"."');\n";
+		
+		/* Print To File */
+		touch($octave_script_path);
+		File::put($octave_script_path, $octave_script);
+
+		/* System Call - Forgive this transgression */
+		system(' octave --silent --eval "source(\''.$octave_script_path.'\');"');
+
+
 		ob_end_clean(); //-- End Output surpression
 
 		$dataArray['Accellerometer'] = array(
@@ -84,6 +129,7 @@ class VerdictController extends \BaseController {
 			'id' 		  => 'Success',
 			'description' => 'Data successfully retrieved',
 			'data' 		  => $dataArray,
+			'url' => "http://tsar208.grid.csun.edu/malice-light/public/images/file.png",
 			'url' => "http://tsar208.grid.csun.edu/malice-light/public/images/file.png",
 			'status' 	  => 200
 		);
