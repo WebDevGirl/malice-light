@@ -1,0 +1,142 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+        
+    <TextView
+        android:id="@+id/label_acceleromter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Accelerometer"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+     <TextView
+        android:id="@+id/label_acceleromter_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/label_acceleromter"
+        android:layout_below="@+id/label_acceleromter"
+        android:textStyle="bold"
+        android:text="x:" />
+     
+     <TextView
+        android:id="@+id/txt_acceleromter_x"
+        android:layout_width="100dip"
+        android:layout_marginLeft="5dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/label_acceleromter_x"
+        android:layout_below="@+id/label_acceleromter"
+        android:text="x" />
+    
+    <TextView
+        android:id="@+id/label_acceleromter_y"
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/label_acceleromter"
+        android:layout_toRightOf="@+id/txt_acceleromter_x"
+        android:textStyle="bold"
+        android:text="y:" />
+     
+    <TextView
+        android:id="@+id/txt_acceleromter_y"
+        android:layout_marginLeft="5dp"
+       	android:layout_width="100dip"
+        android:layout_height="wrap_content"
+    	android:layout_below="@+id/label_acceleromter"
+        android:layout_toRightOf="@+id/label_acceleromter_y"
+        android:text="y" />
+	
+    <TextView
+        android:id="@+id/label_acceleromter_z"
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txt_acceleromter_y"
+        android:layout_alignBottom="@+id/txt_acceleromter_y"
+        android:layout_toRightOf="@+id/txt_acceleromter_y"
+        android:textStyle="bold"
+        android:text="z:" />
+    
+    
+    <TextView
+        android:id="@+id/txt_acceleromter_z"
+      	android:layout_width="100dip"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/label_acceleromter_z"
+        android:layout_alignBottom="@+id/label_acceleromter_z"
+        android:layout_toRightOf="@+id/label_acceleromter_z"
+        android:text="z" />
+    
+
+   
+       
+    <!--  Ambient light  -->
+    <TextView
+        android:id="@+id/label_light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_acceleromter_x"
+        android:layout_marginTop="14dp"
+        android:layout_marginLeft="20dp"
+        android:text="Light"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+	
+     <TextView
+        android:id="@+id/label_light_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/label_light"
+        android:layout_below="@+id/label_light"
+        android:textStyle="bold"
+        android:text="Value:" />
+     
+     <TextView
+        android:id="@+id/txt_light_value"
+        android:layout_width="100dip"
+        android:layout_marginLeft="5dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/label_light_value"
+        android:layout_below="@+id/label_light"
+        android:text="x" />
+     
+     
+     <!--  Response  -->
+     <TextView
+        android:id="@+id/label_JSON"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_light_value"
+        android:layout_marginTop="14dp"
+        android:layout_marginLeft="20dp"
+        android:text="API Response"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+	
+     <TextView
+        android:id="@+id/label_JSON_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/label_JSON"
+        android:layout_below="@+id/label_JSON"
+        android:textStyle="bold"
+        android:text="Response:" />
+     
+     <TextView
+        android:id="@+id/txt_JSON_value"
+        android:layout_width="300dip"
+        android:layout_marginLeft="5dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/label_JSON_value"
+        android:layout_below="@+id/label_JSON"
+        android:text="x" />
+
+</RelativeLayout>
