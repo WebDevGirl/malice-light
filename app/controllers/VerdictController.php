@@ -43,7 +43,7 @@ class VerdictController extends \BaseController {
 		/* Get points for y vector for LIGHT sensor */
 		$y_points = "";
 		foreach($light_records as $rec) {
-			$y_points .= ($rec['record_float'] - $init_time) . ", "; 
+			$y_points .= $rec['x'] . ", "; 
 		}
 		$y_points = substr($y_points,0,strlen($y_points)-2); // remove tailing ,
 
