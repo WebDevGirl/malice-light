@@ -28,6 +28,9 @@ class VerdictController extends \BaseController {
 		$accel_records = XYZRecord::where("session_id", $id)->where("sensor_id","1")->get();
 		$light_records = XYZRecord::where("session_id", $id)->where("sensor_id","2")->get();
 
+		/* Prep Image URLS */
+		$img_accell_x_URI = public_path()."/images/".$id."_accell_x.png";
+		$img_light_URI = public_path()."/images/".$id."._light.png;";
 
 		/*****************************************
 		*	LIGHT SENSOR ANALYSIS
@@ -56,7 +59,7 @@ class VerdictController extends \BaseController {
 		$octave_script  = "x=[${x_points}];\n";
 		$octave_script .= "y=[${y_points}];\n";
 		$octave_script .= "plot(x,y);\n";
-		$octave_script .= "print -dpng ".public_path()."/images/".$id."._light.png;";
+		$octave_script .= "print -dpng '".$img_light_URI."'";
 
 		/* Set Script Filename */
 		$octave_script_path = storage_path()."/cache/file.m";
@@ -92,7 +95,7 @@ class VerdictController extends \BaseController {
 		 $octave_partition_points_func = File::get($octave_partition_points_path);
  
 		 /* Put path to image folder in Octave Script */
-		 $octave_partition_points_func = str_replace("===FILE_PATH_HERE===",(public_path()."/images/".$id."_accell_x.png"),$octave_partition_points_func);
+		 $octave_partition_points_func = str_replace("===FILE_PATH_HERE===",$img_accell_x_URI,$octave_partition_points_func);
 		/* Build Octave Script - Graph */
 		$octave_script  = "x=[${x_points}];\n";
 		$octave_script .= "y=[${x_y_points}];\n";
@@ -127,8 +130,8 @@ class VerdictController extends \BaseController {
 			'id' 		  => 'Success',
 			'description' => 'Data successfully retrieved',
 			'data' 		  => $dataArray,
-			'url' => "http://tsar208.grid.csun.edu/malice-light/public/images/file.png",
-			'url' => "http://tsar208.grid.csun.edu/malice-light/public/images/file.png",
+			'img_accell_x_URI' => $img_accell_x_URI,
+			'img_light_URI' => $img_light_URI,
 			'status' 	  => 200
 		);
 
