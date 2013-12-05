@@ -28,9 +28,12 @@ class VerdictController extends \BaseController {
 		$accel_records = XYZRecord::where("session_id", $id)->where("sensor_id","1")->get();
 		$light_records = XYZRecord::where("session_id", $id)->where("sensor_id","2")->get();
 
-		/* Prep Image URLS */
-		$img_accell_x_URI = public_path()."/images/".$id."_accell_x.png";
-		$img_light_URI = public_path()."/images/".$id."._light.png;";
+		/* Prep Image URLS and Paths */
+		$img_accell_x_path = public_path()."/images/".$id."_accell_x.png";
+		$img_accell_x_URL= "http://tsar208.grid.csun.edu/malice-light/public/images/".$id."_accell_x.png";
+		
+		$img_light_path = public_path()."/images/".$id."_light.png;";
+		$img_light_URL = "http://tsar208.grid.csun.edu/malice-light/public/images/".$id."_light.png;";
 
 		/*****************************************
 		*	LIGHT SENSOR ANALYSIS
@@ -59,7 +62,7 @@ class VerdictController extends \BaseController {
 		$octave_script  = "x=[${x_points}];\n";
 		$octave_script .= "y=[${y_points}];\n";
 		$octave_script .= "plot(x,y);\n";
-		$octave_script .= "print -dpng '".$img_light_URI."'";
+		$octave_script .= "print -dpng '".$img_light_path."'";
 
 		/* Set Script Filename */
 		$octave_script_path = storage_path()."/cache/file.m";
@@ -95,7 +98,7 @@ class VerdictController extends \BaseController {
 		 $octave_partition_points_func = File::get($octave_partition_points_path);
  
 		 /* Put path to image folder in Octave Script */
-		 $octave_partition_points_func = str_replace("===FILE_PATH_HERE===",$img_accell_x_URI,$octave_partition_points_func);
+		 $octave_partition_points_func = str_replace("===FILE_PATH_HERE===",$img_accell_x_path,$octave_partition_points_func);
 		/* Build Octave Script - Graph */
 		$octave_script  = "x=[${x_points}];\n";
 		$octave_script .= "y=[${x_y_points}];\n";
@@ -130,8 +133,8 @@ class VerdictController extends \BaseController {
 			'id' 		  => 'Success',
 			'description' => 'Data successfully retrieved',
 			'data' 		  => $dataArray,
-			'img_accell_x_URI' => $img_accell_x_URI,
-			'img_light_URI' => $img_light_URI,
+			'img_accell_x_URI' => $img_accell_x_URL,
+			'img_light_URI' => $img_light_URL,
 			'status' 	  => 200
 		);
 
