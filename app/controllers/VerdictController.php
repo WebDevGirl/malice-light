@@ -112,13 +112,13 @@ class VerdictController extends \BaseController {
 
 		ob_end_clean(); //-- End Output surpression
 
-		$dataArray['Accellerometer'] = array(
+		$dataArray[] = array(
 			'sensor_id' => 1,
 			'sensor_name' => "Accellerometer",
 			'record_count' => sizeof($accel_records->toArray())
 		);
 
-		$dataArray['Light'] = array(
+		$dataArray[] = array(
 			'sensor_id' => 2,
 			'sensor_name' => "Light",
 			'record_count' => sizeof($light_records->toArray())
