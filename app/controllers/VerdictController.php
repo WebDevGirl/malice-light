@@ -89,16 +89,14 @@ class VerdictController extends \BaseController {
 
 		/* Get Existing Octave Script */
 		 $octave_partition_points_path = storage_path()."/octave/partition_points.m";
-		 $octave_partition_points = File::get($octave_partition_points_path);
-
-		 echo "<pre>";
-		 
-
-
+		 $octave_partition_points_func = File::get($octave_partition_points_path);
+ 
+		 /* Put path to image folder in Octave Script */
+		 $octave_partition_points_func = str_replace("===FILE_PATH_HERE===",(public_path()."/images/file2.png;"),$octave_partition_points_func);
 		/* Build Octave Script - Graph */
 		$octave_script  = "x=[${x_points}];\n";
 		$octave_script .= "y=[${x_y_points}];\n";
-		$octave_script .= $octave_partition_points . "\n";
+		$octave_script .= $octave_partition_points_func . "\n";
 		$octave_script .= "partition_points(x,y, '".public_path()."/images/file2.png;"."');\n";
 		
 		/* Print To File */
