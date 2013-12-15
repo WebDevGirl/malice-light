@@ -88,9 +88,60 @@ class XYZRecordController extends \BaseController {
 	 * @return Response
 	 */
 	public function storeBulk()
-	{
-		error_log(print_r(Input::all(),true));
-		return "hi";
+	{	
+		
+		/* Validate Prep */
+		$validator = new XYZRecordValidator;				
+		$validator->applyRules(XYZRecordValidator::$create);
+
+		/* Invalid Records Counter */
+		$badrecords = 0;
+		$badmessages = [];
+
+
+		$records = json_decode(Input::get('json'),true);
+		foreach($records as $rec) {
+			/* Set Data to validated */
+			$validator->setData($rec);
+
+			/* Validate Data - return errors if it failed */
+			if ($validator->fails()) {
+				/* **** FAILURE **** */
+				$badrecords++;
+				$badmessages[] = $validator->errors->toArray();
+
+			} else {
+				/* **** SUCCESS **** */
+
+				/* Prepare to insert with valid data */
+				$xyz = new XYZRecord;
+				
+				/* Only fill course object with keys from rules array */
+				$valid_keys = array_keys(XYZRecordValidator::$rules);
+				$xyz->fill(array_only($rec,$valid_keys));
+				
+				/* Store Record */
+				$xyz->save();		
+			}
+	
+		}
+
+		if ($badrecords === 0) {
+			$response = array(
+				'id'		=> 'Success',
+				'status'	=> 200
+			);
+
+			return Response::make($response, 200);
+		} else {
+			$response = array(
+				'id'		=> 'Errors',
+				'errors'	=> $badmessages,
+				'status'	=> 500
+			);
+
+			return Response::make($response, 500);
+		}
 	}
 
 }
