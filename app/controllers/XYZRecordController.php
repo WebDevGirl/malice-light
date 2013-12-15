@@ -96,7 +96,7 @@ class XYZRecordController extends \BaseController {
 
 		/* Invalid Records Counter */
 		$badrecords = 0;
-		$badmessages = [];
+		$badmessages = array();
 
 
 		$records = json_decode(Input::get('json'),true);
