@@ -16,3 +16,6 @@
 /*************************************/
 Route::resource('api/v1/xyzrecords', 'XYZRecordController');
 Route::resource('api/v1/verdicts', 'VerdictController');
+
+/* Store Multiple resources */
+Route::post('api/v1/xyzrecords/bulk', 'XYZRecordController@storeBulk'); 

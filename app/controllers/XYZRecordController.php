@@ -82,4 +82,15 @@ class XYZRecordController extends \BaseController {
 		return Response::make($response, 200);
 	}
 
+	/**
+	 * Store a newly created resource in storage.
+	 * @todo permissions
+	 * @return Response
+	 */
+	public function storeBulk()
+	{
+		error_log(print_r(Input::all(),true));
+		return "hi";
+	}
+
 }
