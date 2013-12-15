@@ -62,12 +62,21 @@ abstract class Validator {
 		
 		return false;
 	}
+	
+	/**
+	 * Sets data to be validated (input::all() by default)
+	 * @internal only use this when you can't use the constructor (ie: loop)
+	 */
+	public function setData($data) {
+		
+		$this->data = $data;
+	}
 
-	/*
-	EXAMPLE OF USE (IE: in ClassesController):
-		$validation = new ClassesValidator;
-		$validation->applyRules(ClassesValidator::$update_rules);
-	*/
+
+	/**
+	 * Applys the rules to be used on the data
+	 * @internal EXAMPLE OF USE (IE: in ClassesController): $validation->applyRules(ClassesValidator::$update_rules);
+	 */
 	public function applyRules($newRules = null) {
 		
 		static::$rules = $newRules;
