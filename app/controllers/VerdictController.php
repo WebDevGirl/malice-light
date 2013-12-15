@@ -39,13 +39,13 @@ class VerdictController extends \BaseController {
 		*	LIGHT SENSOR ANALYSIS
 		*****************************************/
 		/* Set Time at first point */
-		$init_time = $accel_records[0]['record_float'];
+		$init_time = $accel_records[0]['record_timestamp'];
 
 
 		/* Get points for x vector for LIGHT sensor */
 		$x_points = "";
 		foreach($light_records as $rec) {
-			$x_points .= ($rec['record_float'] - $init_time) . ", "; 
+			$x_points .= ($rec['record_timestamp'] - $init_time) . ", "; 
 		}
 		$x_points = substr($x_points,0,strlen($x_points)-2); // remove tailing ,
 
@@ -81,7 +81,7 @@ class VerdictController extends \BaseController {
 		/* Get points for x vector for LIGHT sensor */
 		$x_points = "";
 		foreach($light_records as $rec) {
-			$x_points .= ($rec['record_float'] - $init_time) . ", "; 
+			$x_points .= ($rec['record_timestamp'] - $init_time) . ", "; 
 		}
 		$x_points = substr($x_points,0,strlen($x_points)-2); // remove tailing ,
 
