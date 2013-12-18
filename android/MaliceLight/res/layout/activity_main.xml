@@ -7,15 +7,44 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
-        
-    <TextView
-        android:id="@+id/label_acceleromter"
+    <!-- Session Data -->
+     <TextView
+        android:id="@+id/label_session"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
+        android:text="Session"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+     <TextView
+        android:id="@+id/label_session_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/label_session"
+        android:layout_below="@+id/label_session"
+        android:textStyle="bold"
+        android:text="Session ID:" />
+     
+     <TextView
+        android:id="@+id/txt_session_value"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/label_session_value"
+        android:layout_below="@+id/label_session"
+        android:text="x" />    
+    
+    <!--  Accelerometer -->
+    <TextView
+        android:id="@+id/label_acceleromter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/label_session_value"
+        android:layout_marginTop="14dp"
+        android:layout_marginLeft="20dp"
         android:text="Accelerometer"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -110,33 +139,81 @@
         android:text="x" />
      
      
-     <!--  Response  -->
-     <TextView
-        android:id="@+id/label_JSON"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_light_value"
-        android:layout_marginTop="14dp"
-        android:layout_marginLeft="20dp"
-        android:text="API Response"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+
 	
-     <TextView
-        android:id="@+id/label_JSON_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/label_JSON"
-        android:layout_below="@+id/label_JSON"
-        android:textStyle="bold"
-        android:text="Response:" />
+	<!--  Get Verdict -->
+     <Button
+         android:id="@+id/btn_get_verdict"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignLeft="@+id/label_light_value"
+         android:layout_below="@+id/label_light_value"
+         android:layout_marginTop="28dp"
+         android:text="Get Verdict" />
      
      <TextView
-        android:id="@+id/txt_JSON_value"
-        android:layout_width="300dip"
-        android:layout_marginLeft="5dp"
+        android:id="@+id/txt_verdict_value"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="15dp"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/label_JSON_value"
-        android:layout_below="@+id/label_JSON"
-        android:text="x" />
+        android:layout_alignLeft="@+id/btn_get_verdict"
+        android:layout_below="@+id/btn_get_verdict"
+        android:text="" />
 
+     <TextView
+         android:id="@+id/txt_verdict_uri"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignTop="@+id/btn_get_verdict"
+         android:layout_toRightOf="@+id/btn_get_verdict"
+         android:linksClickable="true"
+ 		 android:autoLink="web"
+ 		 android:textAppearance="?android:attr/textAppearanceSmall"
+         android:text="View API URI" />
+     
+     <TextView
+         android:id="@+id/label_image_light_uri"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/txt_verdict_value"
+         android:linksClickable="true"
+         android:textStyle="bold"
+         android:layout_marginTop="14dp"
+         android:layout_marginLeft="20dp"
+ 		 android:textAppearance="?android:attr/textAppearanceSmall"
+         android:text="" />
+     
+     <TextView
+         android:id="@+id/txt_image_light_uri"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/label_image_light_uri"
+         android:linksClickable="true"
+ 		 android:autoLink="web"
+ 		 android:layout_marginLeft="20dp"
+ 		 android:textAppearance="?android:attr/textAppearanceSmall"
+         android:text="" />
+	
+     <TextView
+         android:id="@+id/label_image_accel_x_uri"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/txt_image_light_uri"
+         android:linksClickable="true"
+ 		 android:textAppearance="?android:attr/textAppearanceSmall"
+ 		 android:layout_marginTop="14dp"
+ 		 android:layout_marginLeft="20dp"
+ 		 android:textStyle="bold"
+         android:text="" />
+     
+      <TextView
+         android:id="@+id/txt_image_accel_x_uri"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/label_image_accel_x_uri"
+         android:linksClickable="true"
+ 		 android:autoLink="web"
+ 		 android:layout_marginLeft="20dp"
+ 		 android:textAppearance="?android:attr/textAppearanceSmall"
+         android:text="" />
 </RelativeLayout>
