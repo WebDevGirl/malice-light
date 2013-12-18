@@ -49,8 +49,8 @@ public class MainActivity extends Activity {
 	
 	long startTime = System.currentTimeMillis(); 
 	long elapsedTime; 
-	int MAX_REC = 2000;
-	int MAX_TIME = 60000; /* 10 Mins */ 
+	int MAX_REC = 400;
+	int MAX_TIME = 60000; /* 1 Mins */ 
 
     Sensor accel; 
     Sensor light; 
